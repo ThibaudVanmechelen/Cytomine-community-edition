@@ -1,0 +1,91 @@
+spring:
+  profiles:
+    active: test
+    include: custom-ui
+
+  main:
+    allow-circular-references: true
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://${POSTGIS_HOST:localhost}:${POSTGIS_PORT:5432}/${POSTGIS_DB_NAME:docker}
+    username: ${POSTGIS_USER:docker}
+    password: ${POSTGIS_PASS:password}
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          batch_size: 500
+
+  liquibase:
+    change-log: classpath:config/liquibase/master.xml
+
+  data:
+    mongodb:
+      authentication-database: admin
+      username: ${MONGO_USER:mongoadmin}
+      password: ${MONGO_PASS:password}
+      database: ${MONGO_DB_NAME:cytomine}
+      port: ${MONGO_PORT:27017}
+      host: ${MONGO_HOST:localhost}
+
+  mail:
+    host: disabled
+    port: 587
+    username: CONFIGURE_YOUR_MAILGUN_CREDENTIALS # example: postmaster@sandboxdcb41...5909.mailgun.org
+    password: CONFIGURE_YOUR_MAILGUN_CREDENTIALS # example: 0da253cf5...24-4662f38e
+
+mongock:
+  migration-scan-package:
+    be.cytomine.config.nosqlmigration
+
+  port: 8080
+
+javamelody:
+  enabled: false
+
+logging:
+  level:
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+
+application:
+  serverId: default
+  serverURL: http://localhost:8080
+  adminPassword: password
+  adminEmail: adminEmail@adminEmail.com
+  adminPrivateKey: adminPrivateKey
+  adminPublicKey: adminPublicKey
+  superAdminPrivateKey: superAdminPrivateKey
+  superAdminPublicKey: superAdminPublicKey
+  ImageServerPrivateKey: imageServerPrivateKey
+  ImageServerPublicKey: imageServerPublicKey
+  instanceHostWebsite: instanceHostWebsite.com
+  instanceHostSupportMail: instanceHostSupportMail@email.com
+  instanceHostPhoneNumber: 0999999999
+  defaultLanguage: ENGLISH
+
+  notification:
+    email: email@email.com
+
+  appEngine:
+    enabled: ${APPENGINE_ENABLED:true}
+    apiBasePath: ${APPENGINE_API_BASE_PATH:/appengine/v1/}
+
+  authentication:
+    jwt:
+      # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
+      secret: +MbQeThWmZq4t6w9z$C&F)J@NcRfUjXn2r5u8x!A%D*G-KaPdSgVkYp3s6v9y$B?
+      # Token is valid 24 hours
+      token-validity-in-seconds: ${TOKEN_VALIDITY_IN_SECONDS:86400}
+      token-validity-in-seconds-for-remember-me: ${TOKEN_VALIDITY_IN_SECONDS_REMEMBER_ME:2592000}
+      token-validity-in-seconds-for-short-term: ${TOKEN_VALIDITY_IN_SECONDS_SHORT_TERM:300}
+
+  internalProxyURL: ${INTERNAL_PROXY_URL:http://localhost:8888}
+  annotation:
+    maxNumberOfPoint: 200
