@@ -9,3 +9,4 @@ cytomine.yml
 
 data
 !data/README.md
+keys.toml

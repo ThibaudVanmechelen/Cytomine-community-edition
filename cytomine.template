@@ -34,6 +34,7 @@ global:
   aaa_services_uri:
     constant:
       WEB_UI: web_ui
+      SAM: sam:6000
       CORE: core:8080
       PIMS: pims:5000
       MONGO: mongo
@@ -61,9 +62,10 @@ global:
 
   images:
     constant:
+      SAM: thibaud/sam:0.1.0
       CORE: cytomine/core:5.1.0
       MONGO: cytomine/mongo:1.0.0
-      NGINX: cytomine/nginx:3.0.2-dev
+      NGINX: thibaud/nginx:0.1.0
       PIMS_CACHE: redis:7.2
       PIMS: cytomine/pims-ce-package:ce-1.0.0
       POSTGIS: cytomine/postgis:1.5.3-ci
@@ -255,6 +257,7 @@ services:
         INTERNAL_URLS_IMS2: aaa_services_uri.PIMS
         INTERNAL_URLS_IMS3: aaa_services_uri.PIMS
         INTERNAL_URLS_APPENGINE: aaa_services_uri.APPENGINE
+        INTERNAL_URLS_SAM: aaa_services_uri.SAM
         INTERNAL_URLS_IAM: aaa_services_uri.IAM
         VERSIONS_CYTOMINE_COMMERCIAL: versions.CYTOMINE_COMMERCIAL
         IMAGES_CORE: images.CORE
@@ -285,3 +288,7 @@ services:
         SCHEDULER_MASTER_URL: app-engine.SCHEDULER_MASTER_URL
         SCHEDULER_OAUTH_TOKEN: app-engine.SCHEDULER_OAUTH_TOKEN
         SCHEDULER_USERNAME: app-engine.SCHEDULER_USERNAME
+
+    sam:
+      constant:
+        API_BASE_PATH: /sam
