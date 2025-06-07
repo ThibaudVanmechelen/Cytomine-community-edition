@@ -18,3 +18,7 @@ To learn how to use Cytomine please refer to the [user guide in our documentatio
 ## DISCLAIMERS
 
 This installation is recommended for new Cytomine instances starting from scratch, but **NOT TO UPGRADE** Cytomine instances already running any Legacy edition of Cytomine (version 2 or 3). Please [contact us](mailto:uliege@cytomine.org) if you have such needs.
+
+## Tutorial
+
+See the tutorial video to have the modified procedure to launch this Cytomine version with SAM2 ([tutorial_sam_video.zip](https://drive.google.com/file/d/1rbWN2Aisuq-xNbyf514vhe_hCbxYHHwN/view?usp=drive_link)).
